@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+	<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <title>PS5 4.03 Kernel Exploit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site's description is not available due to the robots.txt">
+    <link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
+  </head>
+  <body>
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">PS5 4.03 Kernel Exploit</a>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Welcome</a></li>
+		<li><a href="./kernelexploit/index.html">Kernel Expolit</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#">Game Mods & PS5 Tools</a></li>
+			    <li><a href="../index.html">PS5 Playground Index</a></li>
+				<li><a href="#">Compatible Firmware: 4.03</a></li>
+			</ul>
+		</div>
+	</nav>
+    <div class="container">
+		<div id="tooltip"></div>
+		<iframe id="appcacheInstaller" style="display: none;" src="install.html"></iframe>
+		<div class="jumbotron">
+      <h1>About PS5 4.03 Kernel Exploit</h1>
+      <p class="lead">
+	  Visit: <i><a href="https://github.com/Cryptogenic/PS5-4.03-Kernel-Exploit" target="_blank">SpecterDev's repo</a></i><br><br>
+		<b>## Summary</b><br>
+		This repo contains an experimental WebKit ROP implementation of a PS5 kernel exploit based on <b>TheFlow's IPV6 Use-After-Free (UAF)</b>, which was <a href="https://hackerone.com/reports/1441103">reported on HackerOne</a>. The exploit strategy is for the most part based on TheFlow's BSD/PS4 PoC with some changes to accommodate the annoying PS5 memory layout (for more see Research Notes section). It establishes an arbitrary read / (semi-arbitrary) write primitive. This exploit and its capabilities have a lot of limitations, and as such, it's mostly intended for developers to play with to reverse engineer some parts of the system.
+		<br><br>
+		Also note; stability is fairly low, especially compared to PS4 exploits. This is due to the bug's nature of being tied to a race condition as well as the mitigations and memory layout of the PS5. This document will contain research info about the PS5, and this exploit will undergo continued development and improvements as time goes on.
+		<br><br>
+		This should now work on 4.03 as well as 4.50 firmware.
+		<br><br>
+		<b>## Currently Included</b><br>
+		- Obtains arbitrary read/write and can run a basic RPC server for reads/writes (or a dump server for large reads) (must edit your own address/port into the exploit file on lines 673-677) (works only locally!)<br>
+		- Enables debug settings menu (note: you will have to fully exit settings and go back in to see it).<br>
+		- Gets root privileges
+		<br><br>
+		<b>## Limitations</b><br>
+		- This exploit achieves read/write, <b>but not code execution</b>. This is because we cannot currently dump kernel code for gadgets, as kernel .text pages are marked as eXecute Only Memory (XOM). Attempting to read kernel .text pointers will panic!<br>
+		- As per the above + the hypervisor (HV) enforcing kernel write protection, this exploit also <b>cannot install any patches or hooks into kernel space</b>, which means no homebrew-related code for the time being.<br>
+		- Clang-based fine-grained Control Flow Integrity (CFI) is present and enforced.<br>
+		- Supervisor Mode Access Prevention/Execution (SMAP/SMEP) cannot be disabled, due to the HV.<br>
+		- The write primitive is somewhat constrained, as bytes 0x10-0x14 must be zero (or a valid network interface).<br>
+		- The exploit's stability is currently poor. More on this below.<br>
+		- On successful run, <b>exit the browser with circle button, PS button panics for a currently unknown reason</b>.
+		<br><br>
+		<b>## Exploit Stages</b><br>
+		This exploit works in 5 stages, and for the most part follows the same exploit strategy as theflow's poc.<br><br>
+		1. Trigger the initial UAF on <code>ip6_pktopts</code> and get two sockets to point to the same <code>pktopts</code> / overlap (master socket <-> overlap spray socket)<br>
+		2. Free the <code>pktopts</code> on the master socket and fake it with an <code>ip6_rthdr</code> spray containing a tagged <code>tclass</code> overlap.<br>
+		3. Infoleak step. Use <code>pktopts</code>/<code>rthdr</code> overlap to leak a kqueue from the 0x200 slab and <code>pktopts</code> from the 0x100 slab.<br>
+		4. Arbitrary read/write step. Fake <code>pktopts</code> again and find the overlap socket to use <code>IPV6_RTHDR</code> as a read/write primitive.<br>
+		5. Cleanup + patch step. Increase refcount on corrupted sockets for successful browser exit + patch data to enable debug menu and patch ucreds for uid0.
+		<br><br>
+		<b>## Stability Notes</b><br>
+		Stability for this exploit is at about 30%, and has multiple potential points of failure. In order of observed descending liklihood:<br><br>
+		1. Stage 1 causes more than one UAF due to failing to catch one or more in the reclaim, causing latent corruption that causes a panic some time later on.<br>
+		2. Stage 4 finds the overlap/victim socket, but the pktopts is the same as the master socket's, causing the "read" primitive to just read back the pointer you attempt to read instead of that pointer's contents. This needs some improvement and to be fixed if possible because it's really annoying.<br>
+		3. Stage 1's attempt to reclaim the UAF fails and something else steals the pointer, causing immediate panic.<br>
+		4. The kqueue leak fails and it fails to find a recognized kernel .data pointer.
+		<br><br>
+		<b>## Research Notes</b><br>
+		- It appears based on various testing and dumping with the read primitive, that the PS5 has reverted back to 0x1000 page size compared to the PS4's 0x4000.<br>
+		- It also seems on PS5 that adjacent pages rarely belong to the same slab, as you'll get vastly different data in adjacent pages. Memory layout seems more scattered.<br>
+		- Often when the PS5 panics (at least in webkit context), there will be awful audio output as the audio buffer gets corrupted in some way.<br>
+		- Sometimes this audio corruption persists to the next boot, unsure why.<br>
+		- Similar to PS4, the PS5 will require the power button to be manually pressed on the console twice to restart after a panic.
+		<br><br>
+		<font color="red"><b>I'm not responsible for any kind of damage on your PS5! Use it at your own risk!</b></font>
+		<br><br>
+		<b>## Contributors</b><br>
+		Massive credits to the following:
+		<br><br>
+		<a href="https://twitter.com/SpecterDev" rel="nofollow">Specter</a><br>
+		<a href="https://twitter.com/theflow0" rel="nofollow">Andy Nguyen / theflow0</a><br>
+		<a href="https://github.com/ChendoChap" rel="nofollow">ChendoChap</a><br>
+		<a href="https://twitter.com/Znullptr" rel="nofollow">Znullptr</a><br>
+		<a href="https://twitter.com/sleirsgoevy">sleirsgoevy</a><br>
+		<a href="https://twitter.com/psxdev">bigboss</a><br>
+		<a href="https://twitter.com/flat_z">flatz</a><br>
+		<a href="https://twitter.com/notzecoxao">zecoxao</a><br>
+		<a href="https://twitter.com/SocraticBliss">SocracticBliss</a><br>
+		laureeeeeee<br><br><br>
+      </p>
+      <hr />
+	  <center><a href="kernelexploit/index.html"><button type="button" class="btn btn-info">Kernel Exploit</button></a></center>
+    </div>
+
+	  <hr>
+
+    <div class="footer">
+      <p>Copyright &copy; PS5 Playground <script>document.write('' + Date().substring(11, 15) + "");</script></p>
+    </div>
+
+    </div>
+  </body>
+</html>

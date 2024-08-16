@@ -1,0 +1,42 @@
+<html>
+	<head>
+	<title>PS5 Playground (Auto Detect)</title>
+	<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
+	</head>
+	<script>
+      var disableFeatures = false;
+      var ua = navigator.userAgent;
+      var playstationOrNot = ua.substring(13, 39);
+      if(playstationOrNot != "Playstation; Playstation 5")
+      {
+      alert("No PS5 detected!")
+        document.write('<div class="alert alert-danger"><strong>No Playstation 5 detected!</strong></div>');
+        window.stop();  
+if ($.browser.msie) {document.execCommand("Stop");};
+        disableFeatures = true;
+      }
+	  else if(ua.substring(40, 44) == "4.03")
+      {
+      window.location.href = "https://ps5.editzz.net/4.03/index.html";
+if ($.browser.msie) {document.execCommand("Stop");};
+        disableFeatures = true;
+      }
+	  else if(ua.substring(40, 44) == "4.50")
+      {
+      window.location.href = "https://ps5.editzz.net/4.50/index.html";
+if ($.browser.msie) {document.execCommand("Stop");};
+        disableFeatures = true;
+      }
+
+	  else if(ua.substring(40, 44) == "4.51")
+      {
+      window.location.href = "https://ps5.editzz.net/4.51/index.html";
+if ($.browser.msie) {document.execCommand("Stop");}; 
+        disableFeatures = true;
+      }
+      else
+      {
+      }
+    </script>
+</html>

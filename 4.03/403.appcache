@@ -1,0 +1,20 @@
+CACHE MANIFEST
+# 20230220-2242:v10
+
+index.html
+install.html
+kernelexploit/index.html
+kernelexploit/js/exploit.js
+kernelexploit/js/int64.js
+kernelexploit/js/rop.js
+kernelexploit/js/rop_slave.js
+kernelexploit/js/webkit.js
+kernelexploit/js/offsets/3.00.js
+kernelexploit/js/offsets/3.10.js
+kernelexploit/js/offsets/3.20.js
+kernelexploit/js/offsets/3.21.js
+kernelexploit/js/offsets/4.00.js
+kernelexploit/js/offsets/4.02.js
+kernelexploit/js/offsets/4.03.js
+kernelexploit/js/offsets/4.50.js
+kernelexploit/js/offsets/4.51.js
