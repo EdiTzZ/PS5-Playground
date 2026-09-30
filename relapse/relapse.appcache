@@ -51,3 +51,10 @@ src/rop.js
 src/site.js
 src/main.js
 src/webkit.js
+../css/font-awesome.min.css
+../css/metro-bootstrap.css
+../font/fontawesome-webfont.eot
+../font/fontawesome-webfont.svg
+../font/fontawesome-webfont.ttf
+../font/fontawesome-webfont.woff
+../font/fontawesome-webfont.woff2
