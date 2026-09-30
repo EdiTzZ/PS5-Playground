@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 20260930-1005:v1
+# 20260930-2140:v2
 
 index.html
 install.html
@@ -51,8 +51,12 @@ src/rop.js
 src/site.js
 src/main.js
 src/webkit.js
-autoloader/selected_exploit
 autoloader/app.js
+autoloader/favicon.svg
+autoloader/index.html
+autoloader/logo.svg
+autoloader/payloads/payload.elf
+autoloader/placeholder.txt
 autoloader/relapse/src/relapse_exploit.js
 autoloader/relapse/src/kexp.js
 autoloader/relapse/src/utils/rop_slave.js
@@ -99,9 +103,9 @@ autoloader/relapse/offsets/8.20.js
 autoloader/relapse/offsets/9.60.js
 autoloader/relapse/LICENSE
 autoloader/relapse/index.html
-autoloader/favicon.svg
-autoloader/placeholder.txt
-autoloader/payloads/payload.elf
+autoloader/selected_exploit
+autoloader/shared/elfldr-ps5.elf
+autoloader/shared/kexp-ps5.bin
 autoloader/slopkit/document/en/ps5/index.html
 autoloader/slopkit/README.md
 autoloader/slopkit/slopkit/rop_slave.js
@@ -150,11 +154,7 @@ autoloader/slopkit/offsets/8.20.js
 autoloader/slopkit/offsets/9.60.js
 autoloader/slopkit/index.html
 autoloader/slopkit/main.css
-autoloader/shared/elfldr-ps5.elf
-autoloader/shared/kexp-ps5.bin
 autoloader/style.css
-autoloader/logo.svg
-autoloader/index.html
 autoloader/umtx2/rop_slave.js
 autoloader/umtx2/syscalls.js
 autoloader/umtx2/psfree/COPYING

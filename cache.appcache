@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 20260930-1005:v12
+# 20260930-2140:v13
 
 4.03/index.html
 4.03/install.html
@@ -102,8 +102,12 @@ relapse/src/rop.js
 relapse/src/site.js
 relapse/src/main.js
 relapse/src/webkit.js
-relapse/autoloader/selected_exploit
 relapse/autoloader/app.js
+relapse/autoloader/favicon.svg
+relapse/autoloader/index.html
+relapse/autoloader/logo.svg
+relapse/autoloader/payloads/payload.elf
+relapse/autoloader/placeholder.txt
 relapse/autoloader/relapse/src/relapse_exploit.js
 relapse/autoloader/relapse/src/kexp.js
 relapse/autoloader/relapse/src/utils/rop_slave.js
@@ -150,9 +154,9 @@ relapse/autoloader/relapse/offsets/8.20.js
 relapse/autoloader/relapse/offsets/9.60.js
 relapse/autoloader/relapse/LICENSE
 relapse/autoloader/relapse/index.html
-relapse/autoloader/favicon.svg
-relapse/autoloader/placeholder.txt
-relapse/autoloader/payloads/payload.elf
+relapse/autoloader/selected_exploit
+relapse/autoloader/shared/elfldr-ps5.elf
+relapse/autoloader/shared/kexp-ps5.bin
 relapse/autoloader/slopkit/document/en/ps5/index.html
 relapse/autoloader/slopkit/README.md
 relapse/autoloader/slopkit/slopkit/rop_slave.js
@@ -201,11 +205,7 @@ relapse/autoloader/slopkit/offsets/8.20.js
 relapse/autoloader/slopkit/offsets/9.60.js
 relapse/autoloader/slopkit/index.html
 relapse/autoloader/slopkit/main.css
-relapse/autoloader/shared/elfldr-ps5.elf
-relapse/autoloader/shared/kexp-ps5.bin
 relapse/autoloader/style.css
-relapse/autoloader/logo.svg
-relapse/autoloader/index.html
 relapse/autoloader/umtx2/rop_slave.js
 relapse/autoloader/umtx2/syscalls.js
 relapse/autoloader/umtx2/psfree/COPYING
