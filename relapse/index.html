@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+	<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+    <title>PS5 Relapse Exploit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="This site's description is not available due to the robots.txt">
+    <link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
+  </head>
+  <body>
+
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">PS5 Relapse Exploit</a>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">Welcome</a></li>
+		<li><a href="relapse.html">Relapse Exploit</a></li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			    <li><a href="../index.html">PS5 Playground Index</a></li>
+				<li><a href="#">Compatible Firmware: 7.00 - 13.60</a></li>
+			</ul>
+		</div>
+	</nav>
+    <div class="container">
+		<div id="tooltip"></div>
+		<iframe id="appcacheInstaller" style="display: none;" src="install.html"></iframe>
+		<div class="jumbotron">
+      <h1>About PS5 Relapse Exploit</h1>
+      <p class="lead">
+	  Visit: <i><a href="https://github.com/ntfargo/Relapse-Exploit" target="_blank">ntfargo's repo</a></i><br><br>
+		<b>## Overview</b><br>
+		The PS5 Relapse Exploit is a major kernel exploit released by developers like ntfargo. It enables a temporary jailbreak for PlayStation 5 (Standard, Slim) and PS5 Pro consoles running on system firmware versions 7.00 through 13.60.
+		<br><br>
+		Sony patched this vulnerability on September 16, 2026, with the release of Firmware 14.00. Because the PlayStation 5 does not support firmware downgrades, updated consoles cannot use this exploit.
+		<br><br>
+		<b>## Key Technical Details</b><br>
+		- The Mechanism: Relapse chains a WebKit browser vulnerability with a kernel race condition to achieve kernel-level Read/Write privileges.<br>
+		- Console Support: Works on all PS5 hardware revisions. Since the PS5 Pro originally shipped with pre-14.00 firmware, most current retail units are vulnerable out of the box.<br>
+		- Speed & Performance: It is significantly faster than previous methods, triggering within seconds. However, it is not permanent (it must be re-run every time the console reboots) and can occasionally cause system crashes (Kernel Panics).<br>
+		- Payload Compatibility: Includes a built-in ELF loader and supports essential homebrew tools like etaHEN, kstuff, and ShadowMountPlus.
+		<br><br>
+		<b>## How it works (Quick steps)</b><br>
+		The community typically hosts this exploit via custom DNS servers to redirect the PS5's hidden web browser:<br><br>
+		- Network Setup: Users manually change their primary DNS in the PS5 network settings to a community host (e.g., 45.56.67.85).<br>
+		- Triggering the Host: Navigating to Settings > User's Guide, Health & Safety > User's Guide opens the custom exploit host page.<br>
+		- Running payloads: Running the exploit opens an ELF loader on port 9021, allowing users to send payloads like etaHEN to enable homebrew features.</b>.
+		<br><br>
+		<font color="red"><b>I'm not responsible for any kind of damage on your PS5! Use it at your own risk!</b></font>
+		<br><br>
+		<b>## Contributors</b><br>
+		Massive credits to the following:
+		<br><br>
+		Sonic_Iso: Kernel Exploit<br>
+		Jordy: Webkit Exploit and Kernel Bug<br>
+		ntfargo: Exploit Dev<br>
+		ufm42: Exploit Dev<br>
+		Dr. Yenyen: Testing<br>
+		TheFlow<br>
+		SlidyBat<br>
+		Flatz<br>
+		cow<br>
+		nhk<br>
+		bollarz<br>
+		Sleirsgoevy<br>
+		EchoStretch<br>
+		EarthOnion<br><br><br>
+      </p>
+      <hr />
+	  <center><a href="relapse.html"><button type="button" class="btn btn-primary">Relapse Exploit</button></a></center>
+    </div>
+
+	  <hr>
+
+    <div class="footer">
+      <p>Copyright &copy; PS5 Playground <script>document.write('' + Date().substring(11, 15) + "");</script></p>
+    </div>
+
+    </div>
+  </body>
+</html>

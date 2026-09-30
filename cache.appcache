@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 20250715-0130:v11
+# 20260930-1005:v12
 
 4.03/index.html
 4.03/install.html
@@ -52,6 +52,56 @@ CACHE MANIFEST
 4.51/kernelexploit/js/offsets/4.03.js
 4.51/kernelexploit/js/offsets/4.50.js
 4.51/kernelexploit/js/offsets/4.51.js
+relapse/index.html
+relapse/install.html
+relapse/LICENSE
+relapse/offsets/9.40.js
+relapse/offsets/12.60.js
+relapse/offsets/10.20.js
+relapse/offsets/8.60.js
+relapse/offsets/13.40.js
+relapse/offsets/7.00.js
+relapse/offsets/12.70.js
+relapse/offsets/13.60.js
+relapse/offsets/7.61.js
+relapse/offsets/8.40.js
+relapse/offsets/7.60.js
+relapse/offsets/13.42.js
+relapse/offsets/10.01.js
+relapse/offsets/7.40.js
+relapse/offsets/12.00.js
+relapse/offsets/12.20.js
+relapse/offsets/7.20.js
+relapse/offsets/11.00.js
+relapse/offsets/11.60.js
+relapse/offsets/10.00.js
+relapse/offsets/13.20.js
+relapse/offsets/7.01.js
+relapse/offsets/8.00.js
+relapse/offsets/12.40.js
+relapse/offsets/11.20.js
+relapse/offsets/9.00.js
+relapse/offsets/13.00.js
+relapse/offsets/12.02.js
+relapse/offsets/10.60.js
+relapse/offsets/9.20.js
+relapse/offsets/10.40.js
+relapse/offsets/8.20.js
+relapse/offsets/9.60.js
+relapse/payloads/elfldr-ps5-1360.elf
+relapse/payloads/kexp_2026_05_25.bin
+relapse/relapse.html
+relapse/src/relapse_exploit.js
+relapse/src/kexp.js
+relapse/src/utils/rop_slave.js
+relapse/src/utils/syscalls.js
+relapse/src/utils/mem.js
+relapse/src/utils/int64.js
+relapse/src/firmware.js
+relapse/src/rop.js
+relapse/src/site.js
+relapse/src/main.js
+relapse/src/webkit.js
 auto/index.html
 css/font-awesome.min.css
 css/metro-bootstrap.css
@@ -64,10 +114,10 @@ img/EdiTzZ-MoDz.png
 img/autod.png
 img/favicon.ico
 img/off.png
-img/ps4.png
 img/ps5_403.png
 img/ps5_450.png
 img/ps5_451.png
+img/ps5_relapse.png
 index.html
 offline/index.html
 offline/install.html
