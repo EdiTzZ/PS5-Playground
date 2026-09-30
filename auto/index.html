@@ -1,42 +1,50 @@
 <html>
-	<head>
-	<title>PS5 Playground (Auto Detect)</title>
-	<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
-	<link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
-	</head>
-	<script>
-      var disableFeatures = false;
-      var ua = navigator.userAgent;
-      var playstationOrNot = ua.substring(13, 39);
-      if(playstationOrNot != "Playstation; Playstation 5")
-      {
-      alert("No PS5 detected!")
-        document.write('<div class="alert alert-danger"><strong>No Playstation 5 detected!</strong></div>');
-        window.stop();  
-if ($.browser.msie) {document.execCommand("Stop");};
-        disableFeatures = true;
-      }
-	  else if(ua.substring(40, 44) == "4.03")
-      {
-      window.location.href = "https://ps5.editzz.com/4.03/index.html";
-if ($.browser.msie) {document.execCommand("Stop");};
-        disableFeatures = true;
-      }
-	  else if(ua.substring(40, 44) == "4.50")
-      {
-      window.location.href = "https://ps5.editzz.com/4.50/index.html";
-if ($.browser.msie) {document.execCommand("Stop");};
-        disableFeatures = true;
-      }
-
-	  else if(ua.substring(40, 44) == "4.51")
-      {
-      window.location.href = "https://ps5.editzz.com/4.51/index.html";
-if ($.browser.msie) {document.execCommand("Stop");}; 
-        disableFeatures = true;
-      }
-      else
-      {
-      }
-    </script>
+<head>
+<title>PS5 Playground (Auto Detect)</title>
+<link rel="shortcut icon" type="image/x-icon" href="../img/favicon.ico">
+<link rel="stylesheet" type="text/css" href="../css/metro-bootstrap.css">
+</head>
+<script>
+(function () {
+  var ua = navigator.userAgent;
+  var match = ua.match(/PlayStation;\s*PlayStation 5\/([0-9]+(?:\.[0-9]+)+)/i);
+  if (!match) {
+    document.write('<div class="alert alert-danger"><strong>No Playstation 5 detected!</strong></div>');
+    return;
+  }
+  var fw = match[1];
+  var legacy = {
+    "4.03":"../4.03/index.html",
+    "4.50":"../4.50/index.html",
+    "4.51":"../4.51/index.html"
+  };
+  function compareFirmware(a, b) {
+    var partsA = a.split(".");
+    var partsB = b.split(".");
+    var length = Math.max(partsA.length, partsB.length);
+    for (var i = 0; i < length; i++) {
+      var valueA = parseInt(partsA[i] || "0", 10);
+      var valueB = parseInt(partsB[i] || "0", 10);
+      if (valueA < valueB) return -1;
+      if (valueA > valueB) return 1;
+    }
+    return 0;
+  }
+  function firmwareInRange(firmware, minimum, maximum) {
+    return (
+      compareFirmware(firmware, minimum) >= 0 &&
+      compareFirmware(firmware, maximum) <= 0
+    );
+  }
+  if (legacy[fw]) {
+    location.replace(legacy[fw]);
+    return;
+  }
+  if (firmwareInRange(fw, "7.00", "13.60")) {
+    location.replace("../relapse/index.html");
+    return;
+  }
+  document.write('<div class="alert alert-danger"><strong>Unsupported PS5 firmware: ' + fw + '</strong></div>');
+})();
+</script>
 </html>
