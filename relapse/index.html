@@ -26,6 +26,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a href="#">Welcome</a></li>
 		<li><a href="relapse.html">Relapse Exploit</a></li>
+		<li><a href="autoloader/index.html">itsPLK Autoloader</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			    <li><a href="../index.html">PS5 Playground Index</a></li>
@@ -57,6 +58,13 @@
 		- Triggering the Host: Navigating to Settings > User's Guide, Health & Safety > User's Guide opens the custom exploit host page.<br>
 		- Running payloads: Running the exploit opens an ELF loader on port 9021, allowing users to send payloads like etaHEN to enable homebrew features.</b>.
 		<br><br>
+		<b>## WebKit Autoloader <a href="https://github.com/itsPLK/ps5-webkit-autoloader" target="_blank">(itsPLK's repo)</a></b><br>
+		WebKit exploits are usually loaded by pointing your PS5's DNS at some server hosted by someone on the internet. That means you're putting your trust in whoever runs that server — and if it goes down, changes, or disappears, your setup breaks.<br>
+		This autoloader does it differently:<br><br>
+		- Fully offline, no third-party DNS. After a one-time install from your PC, everything is served straight from your PS5. There's nothing external to go down or change behind your back. Firmwares 12.02–13.60 run Relapse, which requires an active network interface (Wi-Fi or Ethernet connected to a local network; Internet access is not required).<br>
+		- One-time setup, then a homescreen shortcut. Once it's installed, you don't need a PC or the internet — just launch "WebKit Autoloader" from the homescreen and you're done.<br>
+		- Payloads loaded the way you already know. After the exploit chain runs, your payloads are sent just like in Y2JB / BD-JB / Lua autoloaders — via Payload Manager, or a custom autoload.txt.</b>.
+		<br><br>
 		<font color="red"><b>I'm not responsible for any kind of damage on your PS5! Use it at your own risk!</b></font>
 		<br><br>
 		<b>## Contributors</b><br>
@@ -75,10 +83,14 @@
 		bollarz<br>
 		Sleirsgoevy<br>
 		EchoStretch<br>
-		EarthOnion<br><br><br>
+		EarthOnion<br>
+		idlesauce<br>
+		john-tornblom<br>
+		Mark Adler<br>
+		Everyone else contributing to the PS5 homebrew scene.<br><br><br>
       </p>
       <hr />
-	  <center><a href="relapse.html"><button type="button" class="btn btn-primary">Relapse Exploit</button></a></center>
+	  <center><a href="relapse.html"><button type="button" class="btn btn-primary">Relapse Exploit</button></a> <a href="autoloader/index.html"><button type="button" class="btn btn-primary">itsPLK Autoloader</button></a></center><br>
     </div>
 
 	  <hr>
